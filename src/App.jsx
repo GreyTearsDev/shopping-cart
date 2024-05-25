@@ -1,3 +1,18 @@
+import { Outlet } from "react-router-dom";
+
 export default function App() {
-  return <p>I am the App</p>;
+  return (
+    <>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Products</li>
+          <li>Checkout</li>
+        </ul>
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
 }
