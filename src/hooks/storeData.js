@@ -15,9 +15,17 @@ export default function useFetchStoreData () {
         setData(response);
         setLoading(false);
       })
-      .catch(error => setError(error));
+      .catch(error => {
+        setError(error)
+        setLoading(false);
+    });
 
-    return () => controller.abort();
+    
+    return () => {
+      if (!loading) {
+        controller.abort();
+      }
+    };
   }, []);
 
   return [data, loading, error];
