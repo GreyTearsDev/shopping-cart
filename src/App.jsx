@@ -6,13 +6,13 @@ export default function App() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="active">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="products" activeClassName="active">Products</NavLink>
+            <NavLink to="products">Products</NavLink>
           </li>
           <li>
-            <NavLink to="checkout" activeClassName="active">Checkout</NavLink>
+            <NavLink to="checkout">Checkout</NavLink>
           </li>
         </ul>
       </nav>
