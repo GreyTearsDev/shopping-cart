@@ -3,6 +3,7 @@ import Checkout from "./components/pages/checkout/Checkout";
 import Home from "./components/pages/home/Home";
 import ProductDetails from "./components/pages/product-details/ProductDetails";
 import Products from "./components/pages/products/Products";
+import ErrorPage from "./components/shared/ErrorPage";
 
 const routes = [
   {
@@ -14,10 +15,12 @@ const routes = [
       { path: "products", element: <Products /> },
       { path: "checkout", element: <Checkout /> },
     ],
+    errorElement: <ErrorPage />,
   },
   {
     path: "product-details/:id",
     element: <ProductDetails />,
+    errorElement: <ErrorPage />,
   },
 ];
 
