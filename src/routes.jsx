@@ -19,7 +19,7 @@ const routes = [
   {
     path: "product-details/:id",
     element: <ProductDetails />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorMessage message={"Error: Product not available"} />,
   },
 ];
 
