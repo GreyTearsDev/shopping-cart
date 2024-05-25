@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import ErrorMessage from "./components/shared/ErrorMessage";
+import LoadingSpinner from "./components/shared/LoadingSpinner";
 import useFetchStoreData from "./hooks/storeData";
 
 export default function App() {
@@ -22,7 +24,7 @@ export default function App() {
         </ul>
       </nav>
       <main>
-        <Outlet />
+        {loading ? <LoadingSpinner /> : error ? <ErrorMessage message={error} /> : <Outlet />}
       </main>
     </>
   );
