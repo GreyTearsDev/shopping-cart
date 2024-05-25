@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useFetchStoreData from "./hooks/storeData";
 
 export default function App() {
+  const [data, loading, error] = useFetchStoreData();
+  const [userProducts, setUserProducts] = useState([]);
+
   return (
     <>
       <nav>
