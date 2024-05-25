@@ -3,19 +3,18 @@ import Checkout from "./components/pages/checkout/Checkout";
 import Home from "./components/pages/home/Home";
 import ProductDetails from "./components/pages/product-details/ProductDetails";
 import Products from "./components/pages/products/Products";
-import ErrorPage from "./components/shared/ErrorPage";
+import ErrorMessage from "./components/shared/ErrorMessage";
 
 const routes = [
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Home /> },
-      { path: "home", element: <Home /> },
+      { index: true, path: "/", element: <Home /> },
       { path: "products", element: <Products /> },
       { path: "checkout", element: <Checkout /> },
     ],
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorMessage />,
   },
   {
     path: "product-details/:id",
