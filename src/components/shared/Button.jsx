@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export default function Button({ type = "normal", path, text }) {
+export default function Button({ type = "normal", path, text, onClick }) {
   return (
     <>
       {type == "link"
@@ -10,7 +10,7 @@ export default function Button({ type = "normal", path, text }) {
             <button>{text}</button>
           </Link>
         )
-        : <button>{text}</button>}
+        : <button onClick={onClick}>{text}</button>}
     </>
   );
 }
@@ -19,4 +19,5 @@ Button.propTypes = {
   type: PropTypes.string,
   path: PropTypes.string,
   text: PropTypes.string,
+  onClick: PropTypes.func,
 };
