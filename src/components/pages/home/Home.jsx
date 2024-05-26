@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
+import Button from "../../shared/Button";
 
 export default function Home() {
   return (
     <>
       <h1>EXPLORE OUR STORE</h1>
 
-      <Link to="products">
-        <button>Shop now</button>
-      </Link>
+      <Button type="link" path="products" text="Shop now" />
     </>
   );
 }
