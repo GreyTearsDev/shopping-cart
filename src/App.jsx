@@ -26,7 +26,7 @@ export default function App() {
           ? <LoadingSpinner />
           : error
           ? <ErrorMessage message={"Ups! Something went wrong :("} />
-          : <Outlet context={data} />}
+          : <Outlet context={[data, loading]} />}
       </main>
     </>
   );
