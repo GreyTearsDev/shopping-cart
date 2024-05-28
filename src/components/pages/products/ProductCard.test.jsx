@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useOutletContext } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
@@ -11,6 +11,10 @@ vi.mock("react-router-dom", () => ({
 }));
 
 describe("ProductCard component", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it("renders fields with correct information", () => {
     useOutletContext.mockReturnValue([null, null, [], vi.fn()]);
 
