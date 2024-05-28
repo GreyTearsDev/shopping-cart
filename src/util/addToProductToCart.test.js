@@ -1,31 +1,35 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import addProductToCart from "./addToProductToCart";
 
+const setCartMock = vi.fn()
+
 describe('addProductToCart', () => {
-  it('adds a new product to the cart', () => {
+  
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("adds a new product to the cart", () => {
     const initialCart = [];
-    const setCart = vi.fn();
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCart);
+    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
 
-    expect(setCart).toHaveBeenCalledWith([{ id: 1, amount: 1 }]);
+    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 1 }]);
   });
 
-  it('increments the amount if the product already exists in the cart', () => {
+  it("increments the amount if the product already exists in the cart", () => {
     const initialCart = [{ id: 1, amount: 1 }];
-    const setCart = vi.fn();
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCart);
+    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
 
-    expect(setCart).toHaveBeenCalledWith([{ id: 1, amount: 2 }]);
+    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }]);
   });
 
-  it('does not affect other products in the cart', () => {
+  it("does not affect other products in the cart", () => {
     const initialCart = [{ id: 1, amount: 1 }, { id: 2, amount: 1 }];
-    const setCart = vi.fn();
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCart);
+    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
 
-    expect(setCart).toHaveBeenCalledWith([{ id: 1, amount: 2 }, { id: 2, amount: 1 }]);
+    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }, { id: 2, amount: 1 }]);
   });
 });
