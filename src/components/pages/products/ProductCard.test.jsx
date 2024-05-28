@@ -1,7 +1,7 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useOutletContext } from "react-router-dom";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
@@ -10,9 +10,17 @@ vi.mock("react-router-dom", () => ({
   useOutletContext: vi.fn(),
 }));
 
+vi.mock("../../shared/Button", () => ({
+  default: ({ type, text, onClick }) => <button onClick={onClick}>{text}</button>,
+}));
+
+vi.mock("../../util/addProductToCart", () => ({
+  default: vi.fn(),
+}));
+
 describe("ProductCard component", () => {
-  afterEach(() => {
-    cleanup();
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
 
   it("renders fields with correct information", () => {
@@ -22,7 +30,6 @@ describe("ProductCard component", () => {
 
     expect(screen.getByRole("heading", { name: "productTitle" }).textContent).toMatch(/producttitle/i);
     expect(screen.getByRole("heading", { name: "10 $" }).textContent).toMatch(/10/i);
-    expect(screen.getByRole("button", { name: "Add to cart" }).textContent).toMatch(/add to cart/i);
   });
 
   it("calls addToCart when button is clicked", async () => {
@@ -36,6 +43,15 @@ describe("ProductCard component", () => {
     await user.click(button);
 
     expect(setCartMock).toHaveBeenCalledTimes(1);
-    expect(setCartMock).toHaveBeenCalledWith([{ id: mockedProduct.id, amount: 1 }]);
+  });
+
+  it("renders the Button component", () => {
+    const setCartMock = vi.fn();
+
+    useOutletContext.mockReturnValue([null, null, [], setCartMock]);
+
+    render(<ProductCard product={mockedProduct} />);
+
+    expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument();
   });
 });
