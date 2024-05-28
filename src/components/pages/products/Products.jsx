@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import Button from "../../shared/Button";
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import ProductCard from "./ProductCard";
+import ProductsFilter from "./ProductsFilter";
 
 export default function Products() {
   const [storeData, isLoading] = useOutletContext();
   const [filteredData, setFilteredData] = useState(storeData);
+  const keyWords = ["all", "men's clothing", "women's clothing", "electronics", "jewelery"];
 
   const filterData = (query) => {
     if (query === "all") {
@@ -18,13 +19,7 @@ export default function Products() {
 
   return (
     <>
-      <div>
-        <Button type="normal" text="All" onClick={() => filterData("all")} />
-        <Button type="normal" text="Men's Clothing" onClick={() => filterData("men's clothing")} />
-        <Button type="normal" text="Women's Clothing" onClick={() => filterData("women's clothing")} />
-        <Button type="normal" text="Electronics" onClick={() => filterData("electronics")} />
-        <Button type="normal" text="Jewelery" onClick={() => filterData("jewelery")} />
-      </div>
+      <ProductsFilter filterData={filterData} keyWords={keyWords} />
       <div>
         {isLoading
           ? <LoadingSpinner />
