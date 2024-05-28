@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import Button from "../../shared/Button";
 
-export default function ProductsFilter({ filterData }) {
-  const keyWords = ["all", "men's clothing", "women's clothing", "electronics", "jewelery"];
-
+export default function ProductsFilter({ filterData, keyWords }) {
   return (
     <div>
       {keyWords.map(word => (
@@ -20,4 +18,5 @@ export default function ProductsFilter({ filterData }) {
 
 ProductsFilter.propTypes = {
   filterData: PropTypes.func.isRequired,
+  keyWords: PropTypes.arrayOf(PropTypes.string),
 };
