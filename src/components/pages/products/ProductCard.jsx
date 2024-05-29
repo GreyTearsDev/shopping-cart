@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import addProductToCart from "../../../util/addToProductToCart";
 import getStars from "../../../util/getStars";
 import Button from "../../shared/Button";
@@ -13,14 +13,18 @@ export default function ProductCard({ product }) {
 
   return (
     <article>
-      <div>
-        <img src={product.image} alt={product.title} />
-      </div>
-      <h2>{product.title}</h2>
-      <div>
-        <p>{`${getStars(product.rating.rate)} (${product.rating.count} reviews)`}</p>
-      </div>
-      <h3>{product.price} $</h3>
+      <Link to={`/product-details/${product.id}`} state={{ product }}>
+        <div>
+          <div>
+            <img src={product.image} alt={product.title} />
+          </div>
+          <h2>{product.title}</h2>
+          <div>
+            <p>{`${getStars(product.rating.rate)} (${product.rating.count} reviews)`}</p>
+          </div>
+          <h3>{product.price} $</h3>
+        </div>
+      </Link>
       <Button type="normal" text="Add to cart" onClick={addToCart} />
     </article>
   );
