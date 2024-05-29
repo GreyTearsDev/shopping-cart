@@ -11,7 +11,7 @@ vi.mock("react-router-dom", () => ({
 }));
 
 vi.mock("../../shared/Button", () => ({
-  default: ({ type, text, onClick }) => <button onClick={onClick}>{text}</button>,
+  default: ({ text, onClick }) => <button onClick={onClick}>{text}</button>,
 }));
 
 vi.mock("../../util/addProductToCart", () => ({
@@ -45,13 +45,54 @@ describe("ProductCard component", () => {
     expect(setCartMock).toHaveBeenCalledTimes(1);
   });
 
+  it("adds product to the 'cart' when 'addToCart' gets called", async () => {
+    const cart = [];
+    const setCartMock = vi.fn((product) => {
+      cart.push(product);
+    });
+    const user = userEvent.setup();
+
+    useOutletContext.mockReturnValue([null, null, cart, setCartMock]);
+    render(<ProductCard product={mockedProduct} />);
+
+    const button = screen.getByRole("button", { name: /add to cart/i });
+    await user.click(button);
+
+    expect(cart[0]).toContainEqual({ id: mockedProduct.id, amount: 1 });
+  });
+
   it("renders the Button component", () => {
-    const setCartMock = vi.fn();
-
-    useOutletContext.mockReturnValue([null, null, [], setCartMock]);
-
     render(<ProductCard product={mockedProduct} />);
 
     expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument();
+  });
+
+  it("displays an img element based on the 'image' property of te product", () => {
+    render(<ProductCard product={mockedProduct} />);
+
+    const image = screen.getByRole("img", { name: mockedProduct.title });
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("src", mockedProduct.image);
+    expect(image).toHaveAttribute("alt", mockedProduct.title);
+  });
+
+  it("displays the rating information based on the 'rating' property of the product", () => {
+    const getStarsMock = vi.fn((rate) => {
+      let stars = "";
+      for (let i = 0; i < 5; i++) {
+        if (rate === null || rate === undefined) return;
+        (i < rate) ? stars += "★" : stars += "☆";
+      }
+      return stars;
+    });
+
+    render(<ProductCard product={mockedProduct} />);
+
+    const paragraph = screen.getByText(
+      `${getStarsMock(mockedProduct.rating.rate)} (${mockedProduct.rating.count} reviews)`,
+    );
+
+    expect(getStarsMock).toHaveBeenCalledTimes(1);
+    expect(paragraph).toBeInTheDocument();
   });
 });
