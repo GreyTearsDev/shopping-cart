@@ -12,14 +12,13 @@ const routes = [
     children: [
       { index: true, path: "/", element: <Home /> },
       { path: "products", element: <Products /> },
+      {
+        path: "product-details/:productId",
+        element: <ProductDetails />,
+      },
       { path: "checkout", element: <Checkout /> },
     ],
     errorElement: <ErrorMessage />,
-  },
-  {
-    path: "product-details/:id",
-    element: <ProductDetails />,
-    errorElement: <ErrorMessage message={"Error: Product not available"} />,
   },
 ];
 
