@@ -6,6 +6,7 @@ const mockedProduct = {
   category: "productCategory",
   description: "productDescription",
   image: "productImageURL",
+  rating: {rate: 3, count: 20}
 };
  
 export default mockedProduct;
