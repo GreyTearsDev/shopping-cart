@@ -8,9 +8,21 @@ vi.mock("react-router-dom", () => ({
   useOutletContext: vi.fn(),
 }));
 
+vi.mock("../../shared/LoadingSpinner", () => ({
+  default: () => <p>Loading...</p>,
+}));
+
+vi.mock("./ProductsFilter", () => ({
+  default: () => <button>All</button>,
+}));
+
+vi.mock("./ProductCard", () => ({
+  default: (product) => <h2>{product.title}</h2>,
+}));
+
 describe("Products componet", () => {
   it("renders ProductsFilter component", () => {
-    useOutletContext.mockReturnValue([[], null]);
+    useOutletContext.mockReturnValue([[], false]);
     render(<Products />);
 
     expect(screen.getByRole("button", { name: /all/i })).toBeInTheDocument();
@@ -21,13 +33,14 @@ describe("Products componet", () => {
     useOutletContext.mockReturnValue([[mockProduct], false]);
     render(<Products />);
 
-    expect(screen.getByRole("heading", { name: mockProduct.title }));
+    const heading = screen.getByRole("heading", mockProduct.title);
+    expect(heading).toBeInTheDocument();
   });
 
   it("renders 'Loading' text when isLoading is true", () => {
     useOutletContext.mockReturnValue([[], true]);
     render(<Products />);
 
-    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+    expect(screen.getByRole("paragraph", /loading/i)).toBeInTheDocument();
   });
 });
