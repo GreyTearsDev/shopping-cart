@@ -5,10 +5,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
-vi.mock("react-router-dom", () => ({
-  ...vi.importActual("react-router-dom"),
-  useOutletContext: vi.fn(),
-}));
+vi.mock("react-router-dom", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    Link: ({ to, children }) => <a href={to}>{children}</a>,
+    useOutletContext: vi.fn(),
+  };
+});
 
 vi.mock("../../shared/Button", () => ({
   default: ({ text, onClick }) => <button onClick={onClick}>{text}</button>,
