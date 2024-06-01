@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { useOutletContext } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import Products from "./Products";
 
 vi.mock("react-router-dom", () => ({
@@ -20,7 +20,19 @@ vi.mock("./ProductCard", () => ({
   default: (product) => <h2>{product.title}</h2>,
 }));
 
+vi.mock("./ProductCard", () => ({
+  default: (product) => <h2>{product.title}</h2>,
+}));
+
+vi.mock("../../shared/ErrorMessage", () => ({
+  default: ({ message }) => <p>{message}</p>,
+}));
+
 describe("Products componet", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("renders ProductsFilter component", () => {
     useOutletContext.mockReturnValue([[], false]);
     render(<Products />);
@@ -42,5 +54,13 @@ describe("Products componet", () => {
     render(<Products />);
 
     expect(screen.getByRole("paragraph", /loading/i)).toBeInTheDocument();
+  });
+
+  it("renders error message when 'error' is true", () => {
+    useOutletContext.mockReturnValue([null, null, null, null, true]);
+    render(<Products />);
+
+    expect(screen.getByRole("paragraph", /There was an error while fetching the data. Please, refresh the page/i))
+      .toBeInTheDocument();
   });
 });
