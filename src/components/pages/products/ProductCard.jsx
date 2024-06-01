@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
 
   return (
     <article>
-      <Link to={`/product-details/${product.id}`} state={{ product }}>
+      <Link to={`/product-details/${product.id}`}>
         <div>
           <div>
             <img src={product.image} alt={product.title} />
