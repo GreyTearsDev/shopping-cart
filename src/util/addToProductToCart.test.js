@@ -5,9 +5,9 @@ const setCartMock = vi.fn()
 
 describe('addProductToCart', () => {
   
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
+ afterEach(() => {
+    vi.restoreAllMocks()
+  })
 
   it("adds a new product to the cart", () => {
     const initialCart = [];
