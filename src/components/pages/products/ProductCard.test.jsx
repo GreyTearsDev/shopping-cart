@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useOutletContext } from "react-router-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
@@ -14,17 +14,13 @@ vi.mock("react-router-dom", async (importOriginal) => {
   };
 });
 
-vi.mock("../../shared/Button", () => ({
-  default: ({ text, onClick }) => <button onClick={onClick}>{text}</button>,
-}));
-
 vi.mock("../../util/addProductToCart", () => ({
   default: vi.fn(),
 }));
 
 describe("ProductCard component", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it("renders fields with correct information", () => {
