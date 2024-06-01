@@ -18,7 +18,7 @@ export default function App() {
             <NavLink to="products">Products</NavLink>
           </li>
           <li>
-            <NavLink to="checkout">Checkout</NavLink>
+            <NavLink to="checkout">Checkout({cart.length})</NavLink>
           </li>
         </ul>
       </nav>
