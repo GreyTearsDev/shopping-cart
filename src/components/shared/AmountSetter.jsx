@@ -4,11 +4,11 @@ import Button from "./Button";
 
 export default function AmountSetter({ amount, setAmount }) {
   const [displayAmount, setDisplayAmount] = useState(amount);
-  const { error, incrementAmount, decrementAmount, setCustomAmount } = useAmountSetter(amount, setAmount);
+  const { error, incrementAmount, decrementAmount, setCustomAmount } = useAmountSetter(amount, setDisplayAmount);
 
   useEffect(() => {
-    setDisplayAmount(amount);
-  }, [amount]);
+    setAmount(displayAmount);
+  }, [setAmount, displayAmount]);
 
   return (
     <div>
