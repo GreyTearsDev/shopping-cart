@@ -12,7 +12,7 @@ describe('addProductToCart', () => {
   it("adds a new product to the cart", () => {
     const initialCart = [];
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
+    addProductToCart({ id: 1, amount: 1 }, 1, initialCart, setCartMock);
 
     expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 1 }]);
   });
@@ -20,7 +20,7 @@ describe('addProductToCart', () => {
   it("increments the amount if the product already exists in the cart", () => {
     const initialCart = [{ id: 1, amount: 1 }];
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
+    addProductToCart({ id: 1, amount: 1 }, 1, initialCart, setCartMock);
 
     expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }]);
   });
@@ -28,7 +28,7 @@ describe('addProductToCart', () => {
   it("does not affect other products in the cart", () => {
     const initialCart = [{ id: 1, amount: 1 }, { id: 2, amount: 1 }];
 
-    addProductToCart({ id: 1, amount: 1 }, initialCart, setCartMock);
+    addProductToCart({ id: 1, amount: 1 }, 1, initialCart, setCartMock);
 
     expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }, { id: 2, amount: 1 }]);
   });
