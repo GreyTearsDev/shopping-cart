@@ -1,15 +1,15 @@
-export default function addProductToCart(product, cart, setCart) {
-    let productExists = false;
+import findProduct from "./findProduct";
+export default function addProductToCart(product, amount, cart, setCart) {
+  const arr = [...cart];
+  let productToAdd = findProduct(product.id, cart);
 
-    const arr = [...cart];
-  
+  if (productToAdd) {
     arr.forEach(prod => {
-      if (prod.id === product.id) {
-        ++prod.amount;
-        productExists = true;
-      }
-    });
+      if (prod.id === productToAdd.id) ++productToAdd.amount
+    })
+  } else {
+    arr.push({ id: product.id, amount: amount });
+  }
 
-    if (!productExists) arr.push({ id: product.id, amount: 1 });
-    setCart(arr);
+  setCart(arr);
 }
