@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
   const [, , cart, setCart] = useOutletContext();
 
   const addToCart = () => {
-    addProductToCart(product, cart, setCart);
+    addProductToCart(product, 1, cart, setCart);
   };
 
   return (
