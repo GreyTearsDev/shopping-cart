@@ -5,7 +5,7 @@ export default function addProductToCart(product, amount, cart, setCart) {
 
   if (productToAdd) {
     arr.forEach(prod => {
-      if (prod.id === productToAdd.id) ++productToAdd.amount
+      if (prod.id === productToAdd.id) productToAdd.amount = productToAdd.amount + amount
     })
   } else {
     arr.push({ id: product.id, amount: amount });
