@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export default function Button({ type = "normal", path, text, onClick }) {
+export default function Button({ active, type = "normal", path, text, onClick }) {
   return (
     <>
       {type == "link"
         ? (
           <Link to={path}>
-            <button>{text}</button>
+            <button className={active ? "active" : null}>{text}</button>
           </Link>
         )
         : <button onClick={onClick}>{text}</button>}
@@ -16,6 +16,7 @@ export default function Button({ type = "normal", path, text, onClick }) {
 }
 
 Button.propTypes = {
+  active: PropTypes.bool,
   type: PropTypes.string.isRequired,
   path: PropTypes.string,
   text: PropTypes.string.isRequired,
