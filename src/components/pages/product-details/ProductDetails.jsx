@@ -1,17 +1,20 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import addProductToCart from "../../../util/addToProductToCart";
 import findProduct from "../../../util/findProduct";
 import getStars from "../../../util/getStars";
+import AmountSetter from "../../shared/AmountSetter";
 import Button from "../../shared/Button";
 
 export default function ProductDetails() {
   const [storeData, , cart, setCart] = useOutletContext();
   const { productId } = useParams();
   const product = findProduct(parseInt(productId), storeData);
+  const [amount, setAmount] = useState(1);
 
   const addToCart = () => {
-    addProductToCart(product, cart, setCart);
+    addProductToCart(product, amount, cart, setCart);
   };
 
   return (
@@ -29,8 +32,13 @@ export default function ProductDetails() {
             </div>
             <p className="font-s">{product.description}</p>
           </div>
-          <div className="product-details__product-actions">
-            <Button type="normal" text="Add to cart" onClick={addToCart} />
+          <AmountSetter
+            setAmount={setAmount}
+            amount={amount}
+          />
+          <div>
+            <Button type="normal" text="Add to Cart" onClick={addToCart} />
+            <Button type="link" path="/checkout" text="Checkout Now" />
           </div>
         </>
       )}
