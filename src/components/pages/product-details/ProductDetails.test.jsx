@@ -49,7 +49,7 @@ describe("ProductDetails component", () => {
   it("renders ProductDetails component with mock data", () => {
     expect(screen.getByText("Product 1")).toBeInTheDocument();
     expect(screen.getByText("Description 1")).toBeInTheDocument();
-    expect(screen.getByText("10 $")).toBeInTheDocument();
+    expect(screen.getByText("$10")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument();
   });
 });
