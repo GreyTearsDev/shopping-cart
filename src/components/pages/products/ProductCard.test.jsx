@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useOutletContext } from "react-router-dom";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
@@ -18,23 +18,35 @@ vi.mock("../../util/addProductToCart", () => ({
   default: vi.fn(),
 }));
 
+vi.mock("../shared/Button", () => ({
+  default: () => <button>Add to Cart</button>,
+}));
+
 describe("ProductCard component", () => {
+  let cart;
+  let setCartMock;
+
+  beforeEach(() => {
+    cart = [];
+    setCartMock = vi.fn((product) => {
+      cart.push(product);
+    });
+    useOutletContext.mockReturnValue([null, null, cart, setCartMock]);
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
   it("renders fields with correct information", () => {
-    useOutletContext.mockReturnValue([null, null, [], vi.fn()]);
-
     render(<ProductCard product={mockedProduct} />);
 
     expect(screen.getByRole("heading", { name: "productTitle" }).textContent).toMatch(/producttitle/i);
     expect(screen.getByRole("heading", { name: "10 $" }).textContent).toMatch(/10/i);
+    expect(screen.getByAltText(mockedProduct.title));
   });
 
   it("calls addToCart when button is clicked", async () => {
-    const setCartMock = vi.fn();
-    useOutletContext.mockReturnValue([null, null, [], setCartMock]);
     const user = userEvent.setup();
 
     render(<ProductCard product={mockedProduct} />);
@@ -46,13 +58,8 @@ describe("ProductCard component", () => {
   });
 
   it("adds product to the 'cart' when 'addToCart' gets called", async () => {
-    const cart = [];
-    const setCartMock = vi.fn((product) => {
-      cart.push(product);
-    });
     const user = userEvent.setup();
 
-    useOutletContext.mockReturnValue([null, null, cart, setCartMock]);
     render(<ProductCard product={mockedProduct} />);
 
     const button = screen.getByRole("button", { name: /add to cart/i });
