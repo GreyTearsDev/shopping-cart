@@ -1,15 +1,23 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import Button from "../../shared/Button";
 
 export default function ProductsFilter({ filterData, keyWords }) {
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  const handleClick = (word) => {
+    filterData(word);
+    setActiveFilter(word);
+  };
   return (
     <div>
       {keyWords.map(word => (
         <Button
+          active={activeFilter === word ? true : false}
           key={word}
           type="normal"
           text={word.charAt(0).toUpperCase() + word.slice(1)}
-          onClick={() => filterData(word)}
+          onClick={() => handleClick(word)}
         />
       ))}
     </div>
