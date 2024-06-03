@@ -25,7 +25,7 @@ export default function ProductDetails() {
             <img src={product.image} alt={product.title} />
           </div>
           <div className="product-info product-info__product-details">
-            <h2 className="font-xl">{product.price} $</h2>
+            <h2 className="font-xl">${product.price}</h2>
             <h3 className="font-l">{product.title}</h3>
             <div className="rating">
               <p className="font-m">{`${getStars(product.rating.rate)} (${product.rating.count} reviews)`}</p>
