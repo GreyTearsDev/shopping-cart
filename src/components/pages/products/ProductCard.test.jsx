@@ -65,7 +65,7 @@ describe("ProductCard component", () => {
     const button = screen.getByRole("button", { name: /add to cart/i });
     await user.click(button);
 
-    expect(cart[0]).toContainEqual({ id: mockedProduct.id, amount: 1 });
+    expect(cart[0]).toContainEqual({ id: mockedProduct.id, amount: 1, price: mockedProduct.price });
   });
 
   it("renders the Button component", () => {
