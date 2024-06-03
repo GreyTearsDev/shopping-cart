@@ -42,7 +42,7 @@ describe("ProductCard component", () => {
     render(<ProductCard product={mockedProduct} />);
 
     expect(screen.getByRole("heading", { name: "productTitle" }).textContent).toMatch(/producttitle/i);
-    expect(screen.getByRole("heading", { name: "10 $" }).textContent).toMatch(/10/i);
+    expect(screen.getByRole("heading", { name: "$10" }).textContent).toMatch(/10/i);
     expect(screen.getByAltText(mockedProduct.title));
   });
 
