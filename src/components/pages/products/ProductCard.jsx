@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
           <div>
             <p>{`${getStars(product.rating.rate)} (${product.rating.count} reviews)`}</p>
           </div>
-          <h3>{product.price} $</h3>
+          <h3>${product.price}</h3>
         </div>
       </Link>
       <Button type="normal" text="Add to cart" onClick={addToCart} />
