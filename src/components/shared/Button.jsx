@@ -17,7 +17,7 @@ export default function Button({ active, type = "normal", path, text, onClick })
 
 Button.propTypes = {
   active: PropTypes.bool,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   path: PropTypes.string,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func,
