@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import addProductToCart from "../../../util/addToProductToCart";
+import addProductToCart from "../../../util/addProductToCart";
 import findProduct from "../../../util/findProduct";
 import getStars from "../../../util/getStars";
 import AmountSetter from "../../shared/AmountSetter";
