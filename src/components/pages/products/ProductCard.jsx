@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link, useOutletContext } from "react-router-dom";
-import addProductToCart from "../../../util/addToProductToCart";
+import addProductToCart from "../../../util/addProductToCart";
 import getStars from "../../../util/getStars";
 import Button from "../../shared/Button";
 
