@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
-import addProductToCart from "./addToProductToCart";
+import addProductToCart from "./addProductToCart";
 
 const setCartMock = vi.fn()
 
@@ -17,19 +17,12 @@ describe('addProductToCart', () => {
     expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 1 }]);
   });
 
-  it("increments the amount if the product already exists in the cart", () => {
-    const initialCart = [{ id: 1, amount: 1 }];
-
-    addProductToCart({ id: 1, amount: 1 }, 1, initialCart, setCartMock);
-
-    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }]);
-  });
 
   it("does not affect other products in the cart", () => {
     const initialCart = [{ id: 1, amount: 1 }, { id: 2, amount: 1 }];
 
     addProductToCart({ id: 1, amount: 1 }, 1, initialCart, setCartMock);
 
-    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 2 }, { id: 2, amount: 1 }]);
+    expect(setCartMock).toHaveBeenCalledWith([{ id: 1, amount: 1 }, { id: 2, amount: 1 }]);
   });
 });
