@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import useFetchStoreData from "./hooks/storeData";
+import useFetchStoreData from "./hooks/useFetchStoreData";
 
 export default function App() {
   const [data, loading, error] = useFetchStoreData();
