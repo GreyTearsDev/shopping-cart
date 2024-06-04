@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useFetchStoreData () {
+const useFetchStoreData = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,17 +10,16 @@ export default function useFetchStoreData () {
     const signal = controller.signal;
 
     fetch("https://fakestoreapi.com/products", { signal })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         setData(response);
         setLoading(false);
       })
-      .catch(error => {
-        setError(error)
+      .catch((error) => {
+        setError(error);
         setLoading(false);
-    });
+      });
 
-    
     return () => {
       if (!loading) {
         controller.abort();
@@ -29,5 +28,6 @@ export default function useFetchStoreData () {
   }, []);
 
   return [data, loading, error];
-}
+};
 
+export default useFetchStoreData;
