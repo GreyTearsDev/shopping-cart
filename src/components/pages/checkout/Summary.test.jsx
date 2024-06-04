@@ -4,9 +4,21 @@ import { describe, expect, it, vi } from "vitest";
 import Summary from "./Summary";
 
 describe("Summary compontent", () => {
-  it("correctly renders the total amount of the bill", () => {
+  it("correctly renders the amount of the bill before taxes", () => {
     render(<Summary billTotal={200} />);
-    const paragraph = screen.getByText(/total: \$200/i);
+    const paragraph = screen.getByText(/subtotal: \$200/i);
+    expect(paragraph).toBeInTheDocument();
+  });
+
+  it("correctly renders the amount of taxes to be payed", () => {
+    render(<Summary taxesTotal={20} />);
+    const paragraph = screen.getByText(/taxes: \$20/i);
+    expect(paragraph).toBeInTheDocument();
+  });
+
+  it("correctly renders the total amount to be payed after taxes", () => {
+    render(<Summary billTotal={200} taxesTotal={20} />);
+    const paragraph = screen.getByText(/total: \$220/i);
     expect(paragraph).toBeInTheDocument();
   });
 
