@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import roundNumber from "../util/roundNumber";
 
 const useBillAndTaxes = (cart) => {
   const [billTotal, setBillTotal] = useState(0);
@@ -10,7 +11,7 @@ const useBillAndTaxes = (cart) => {
 
     const billTotal = cart.map(product => {
       const total = product.price * product.amount;
-      taxesTotalArray.push(Math.round(((total * TAX_PERCENTAGE) + Number.EPSILON) * 100) / 100);
+      taxesTotalArray.push(roundNumber(total * TAX_PERCENTAGE));
       return total;
     }).reduce((prev, curr) => prev + curr, 0);
 
