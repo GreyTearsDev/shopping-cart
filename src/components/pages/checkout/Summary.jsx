@@ -7,7 +7,7 @@ export default function Summary({ billTotal, taxesTotal, onPlaceOrder }) {
       <h2>Summary</h2>
       <p>Subtotal: ${billTotal}</p>
       <p>Taxes: ${taxesTotal}</p>
-      <h3>Total: ${billTotal + taxesTotal}</h3>
+      <h3>Total: ${Math.round(((billTotal + taxesTotal) + Number.EPSILON) * 100) / 100}</h3>
       <Button text="Place Order" onClick={onPlaceOrder} />
     </section>
   );
