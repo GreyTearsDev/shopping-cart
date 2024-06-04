@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import Button from "../../shared/Button";
 
-export default function Summary({ billTotal, onPlaceOrder }) {
+export default function Summary({ billTotal, taxesTotal, onPlaceOrder }) {
   return (
     <section>
       <h2>Summary</h2>
-      <p>Total: ${billTotal}</p>
+      <p>Subtotal: ${billTotal}</p>
+      <p>Taxes: ${taxesTotal}</p>
+      <h3>Total: ${billTotal + taxesTotal}</h3>
       <Button text="Place Order" onClick={onPlaceOrder} />
     </section>
   );
@@ -13,5 +15,6 @@ export default function Summary({ billTotal, onPlaceOrder }) {
 
 Summary.propTypes = {
   billTotal: PropTypes.number,
+  taxesTotal: PropTypes.number,
   onPlaceOrder: PropTypes.func,
 };
