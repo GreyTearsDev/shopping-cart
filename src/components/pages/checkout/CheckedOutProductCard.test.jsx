@@ -1,14 +1,27 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useOutletContext } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { renderWithTheme } from "../../../test-util";
 import CheckedOutProductCard from "./CheckedOutProductCard";
 
 vi.mock("../../../shared/AmountSetter", () => ({
   default: () => <p>Setting the amount</p>,
 }));
 
+vi.mock("react-router-dom", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    Link: ({ to, children }) => <a href={to}>{children}</a>,
+    useOutletContext: vi.fn(),
+  };
+});
+
 describe("CheckedOutProductCard component", () => {
   let product;
+  let cart;
+  let setCart;
 
   beforeEach(() => {
     product = {
@@ -19,15 +32,19 @@ describe("CheckedOutProductCard component", () => {
       rating: { rate: 4, count: 10 },
       description: "Description 1",
     };
+
+    cart = [product];
+    setCart = vi.fn();
+    useOutletContext.mockReturnValue([null, null, cart, setCart]);
   });
 
   it("renders the title of the product", () => {
-    render(<CheckedOutProductCard product={product} />);
+    renderWithTheme(<CheckedOutProductCard product={product} />);
     expect(screen.getByRole("heading", { name: product.title })).toBeInTheDocument();
   });
 
   it("renders the price of the product", () => {
-    render(<CheckedOutProductCard product={product} />);
+    renderWithTheme(<CheckedOutProductCard product={product} />);
     expect(screen.getByText(`Price: $${product.price}`));
   });
 
@@ -35,7 +52,7 @@ describe("CheckedOutProductCard component", () => {
     const user = userEvent.setup();
     const onDeleteMock = vi.fn();
 
-    render(<CheckedOutProductCard product={product} onDelete={onDeleteMock} />);
+    renderWithTheme(<CheckedOutProductCard product={product} onDelete={onDeleteMock} />);
 
     const button = screen.getByRole("button", { name: /x/i });
     await user.click(button);
@@ -43,7 +60,7 @@ describe("CheckedOutProductCard component", () => {
   });
 
   it("renders the AmountSetter component", () => {
-    render(<CheckedOutProductCard product={product} />);
+    renderWithTheme(<CheckedOutProductCard product={product} />);
     const incrementButton = screen.getByRole("button", { name: /\+/i });
     const decrementButton = screen.getByRole("button", { name: /-/i });
     const inputField = screen.getByRole("textbox");
@@ -54,7 +71,7 @@ describe("CheckedOutProductCard component", () => {
   });
 
   it("renders the product image", () => {
-    render(<CheckedOutProductCard product={product} />);
+    renderWithTheme(<CheckedOutProductCard product={product} />);
     expect(screen.getByAltText(`${product.title}`));
   });
 });
