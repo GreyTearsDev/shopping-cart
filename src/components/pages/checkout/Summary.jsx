@@ -9,7 +9,7 @@ export default function Summary({ billTotal, taxesTotal, onPlaceOrder }) {
       <p>Subtotal: ${roundNumber(billTotal)}</p>
       <p>Taxes: ${roundNumber(taxesTotal)}</p>
       <h3>Total: ${roundNumber(billTotal + taxesTotal)}</h3>
-      <Button text="Place Order" onClick={onPlaceOrder} />
+      <Button type="normal" text="Place Order" onClick={onPlaceOrder} />
     </section>
   );
 }
