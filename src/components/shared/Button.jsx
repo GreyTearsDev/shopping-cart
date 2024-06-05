@@ -13,27 +13,24 @@ const buttonStyles = css`
   transition: all 200ms ease;
 
   background-color: ${({ theme, type, active }) =>
-  type === "normal" && !active
-    ? theme.colors.primary
-    : active
+  type === "normal" && active === "false" || active === "true"
     ? theme.colors.primary
     : theme.colors.secondary};
 
   color: ${({ theme, type, active }) =>
-  type === "normal" && !active
+  type === "filter" && active === "true"
     ? theme.colors.secondary
-    : active
+    : type === "normal"
     ? theme.colors.secondary
     : theme.colors.primary};
 
-  border: 2px solid
+  outline: 2px solid
     ${({ theme, type, active }) =>
-  (type === "link" || !active)
+  (type === "link" || active === "false")
     ? theme.colors.primary
     : "transparent"};
 
-  padding: ${({ type, active }) => type === "normal" || (type === "filter" && active) ? "10px 20px" : "8px 18px"};
-
+  padding: ${({ type }) => type === "normal" ? "10px 20px" : "8px 18px"};
 
    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -50,6 +47,7 @@ const StyledButton = styled.button`
 const StyledLinkButton = styled(Link)`
 
   & > ${StyledButton} {
+
     ${buttonStyles}
   }
 `;
@@ -62,7 +60,7 @@ export default function Button({ active, type, path, text, onClick }) {
       </StyledLinkButton>
     )
     : (
-      <StyledButton active={active} type={type} onClick={onClick}>
+      <StyledButton active={active ? "true" : "false"} type={type} onClick={onClick}>
         {text}
       </StyledButton>
     );
