@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import NavBar from "./components/shared/Navbar";
 import { GlobalStyle, theme } from "./globalStyles";
 import useFetchStoreData from "./hooks/useFetchStoreData";
 
@@ -13,19 +14,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="products">Products</NavLink>
-            </li>
-            <li>
-              <NavLink to="checkout">Checkout({cart.length})</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <NavBar cart={cart} />
         <main>
           <Outlet context={outletContext} />
         </main>
