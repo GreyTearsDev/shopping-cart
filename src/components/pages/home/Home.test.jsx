@@ -1,12 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { renderWithTheme } from "../../../test-util";
 import Home from "./Home";
 
 describe("Home component", () => {
   it("renders the correct heading", () => {
-    render(
+    renderWithTheme(
       <MemoryRouter>
         <Home />
       </MemoryRouter>,
@@ -18,7 +19,7 @@ describe("Home component", () => {
   it("follows the link when clicked", async () => {
     const user = userEvent.setup();
 
-    render(
+    renderWithTheme(
       <MemoryRouter initialEntries={["/"]}>
         <Routes>
           <Route path="/" element={<Home />} />

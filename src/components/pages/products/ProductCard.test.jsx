@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useOutletContext } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { renderWithTheme } from "../../../test-util";
 import mockedProduct from "./__mocks__/mockedProduct";
 import ProductCard from "./ProductCard";
 
@@ -39,7 +40,7 @@ describe("ProductCard component", () => {
   });
 
   it("renders fields with correct information", () => {
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     expect(screen.getByRole("heading", { name: "productTitle" }).textContent).toMatch(/producttitle/i);
     expect(screen.getByRole("heading", { name: "$10" }).textContent).toMatch(/10/i);
@@ -49,7 +50,7 @@ describe("ProductCard component", () => {
   it("calls addToCart when button is clicked", async () => {
     const user = userEvent.setup();
 
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     const button = screen.getByRole("button", { name: /add to cart/i });
     await user.click(button);
@@ -60,7 +61,7 @@ describe("ProductCard component", () => {
   it("adds product to the 'cart' when 'addToCart' gets called", async () => {
     const user = userEvent.setup();
 
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     const button = screen.getByRole("button", { name: /add to cart/i });
     await user.click(button);
@@ -69,13 +70,13 @@ describe("ProductCard component", () => {
   });
 
   it("renders the Button component", () => {
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument();
   });
 
   it("displays an img element based on the 'image' property of te product", () => {
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     const image = screen.getByRole("img", { name: mockedProduct.title });
     expect(image).toBeInTheDocument();
@@ -93,7 +94,7 @@ describe("ProductCard component", () => {
       return stars;
     });
 
-    render(<ProductCard product={mockedProduct} />);
+    renderWithTheme(<ProductCard product={mockedProduct} />);
 
     const paragraph = screen.getByText(
       `${getStarsMock(mockedProduct.rating.rate)} (${mockedProduct.rating.count} reviews)`,

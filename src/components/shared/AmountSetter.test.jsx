@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import fireEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { renderWithTheme } from "../../test-util";
 import AmountSetter from "./AmountSetter";
 
 describe("AmountSetter component", () => {
@@ -15,12 +16,7 @@ describe("AmountSetter component", () => {
   });
 
   it("renders increment and decrement buttons", () => {
-    render(
-      <AmountSetter
-        amount={amount}
-        setAmount={setAmount}
-      />,
-    );
+    renderWithTheme(<AmountSetter amount={amount} setAmount={setAmount} />);
 
     const incrementButton = screen.getByRole("button", { name: "+" });
     const decrementButton = screen.getByRole("button", { name: "-" });
@@ -29,12 +25,7 @@ describe("AmountSetter component", () => {
   });
 
   it("renders input field for custom amounts", () => {
-    render(
-      <AmountSetter
-        amount={amount}
-        setAmount={setAmount}
-      />,
-    );
+    renderWithTheme(<AmountSetter amount={amount} setAmount={setAmount} />);
 
     const inputField = screen.getByRole("textbox");
     expect(inputField).toBeInTheDocument();
@@ -43,12 +34,7 @@ describe("AmountSetter component", () => {
   it("clicking on the increment increases the amount", async () => {
     const user = fireEvent.setup();
 
-    render(
-      <AmountSetter
-        amount={amount}
-        setAmount={setAmount}
-      />,
-    );
+    renderWithTheme(<AmountSetter amount={amount} setAmount={setAmount} />);
 
     const incrementButton = screen.getByRole("button", { name: "+" });
     await user.click(incrementButton);
@@ -58,12 +44,7 @@ describe("AmountSetter component", () => {
   it("clicking on the decrement decreases the amount", async () => {
     const user = fireEvent.setup();
 
-    render(
-      <AmountSetter
-        amount={amount}
-        setAmount={setAmount}
-      />,
-    );
+    renderWithTheme(<AmountSetter amount={amount} setAmount={setAmount} />);
 
     const decrementButton = screen.getByRole("button", { name: "-" });
     await user.click(decrementButton);
@@ -73,12 +54,7 @@ describe("AmountSetter component", () => {
   it("typing a custom value sets the amount the be said value", async () => {
     const user = fireEvent.setup();
 
-    render(
-      <AmountSetter
-        amount={amount}
-        setAmount={setAmount}
-      />,
-    );
+    renderWithTheme(<AmountSetter amount={amount} setAmount={setAmount} />);
 
     const inputField = screen.getByRole("textbox");
     await user.type(inputField, "2");

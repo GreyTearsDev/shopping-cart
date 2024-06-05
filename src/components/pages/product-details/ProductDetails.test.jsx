@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useOutletContext } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { renderWithTheme } from "../../../test-util";
 import ProductDetails from "./ProductDetails";
 
 vi.mock("react-router-dom", async (importOriginal) => {
@@ -37,7 +38,8 @@ describe("ProductDetails component", () => {
     cart = [];
     const setCart = vi.fn();
     useOutletContext.mockReturnValue([storeData, null, cart, setCart]);
-    render(
+
+    renderWithTheme(
       <MemoryRouter initialEntries={["/products/1"]}>
         <Routes>
           <Route path="/products/:productId" element={<ProductDetails />} />
