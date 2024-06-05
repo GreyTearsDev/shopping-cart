@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from "../../shared/Button";
 
 export default function ProductsFilter({ filterData, keyWords }) {
-  const [activeFilter, setActiveFilter] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const handleClick = (word) => {
     filterData(word);
@@ -15,7 +15,7 @@ export default function ProductsFilter({ filterData, keyWords }) {
         <Button
           active={activeFilter === word ? true : false}
           key={word}
-          type="normal"
+          type="filter"
           text={word.charAt(0).toUpperCase() + word.slice(1)}
           onClick={() => handleClick(word)}
         />
