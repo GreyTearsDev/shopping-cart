@@ -15,14 +15,14 @@ export default function CheckedOutProductCard({ product, onDelete, productAmount
 
   return (
     <article>
+      <button onClick={() => onDelete(product)}>x</button>
       <div>
         <img src={product.image} alt={product.title} />
       </div>
-      <Button text="x" onClick={() => onDelete(product)} />
       <h3>{product.title}</h3>
       <p>Price: ${product.price}</p>
       <AmountSetter amount={amount} setAmount={setAmount} />
-      <Button text="Update Amount" onClick={addToCart} />
+      <Button type="normal" text="Update Amount" onClick={addToCart} />
     </article>
   );
 }
