@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import useAmountSetter from "../../hooks/useAmountSetter";
-import Button from "./Button";
 
 export default function AmountSetter({ amount, setAmount }) {
   const [displayAmount, setDisplayAmount] = useState(amount);
@@ -14,9 +13,9 @@ export default function AmountSetter({ amount, setAmount }) {
   return (
     <div>
       {error && <p>{error}</p>}
-      <Button type="normal" text="-" onClick={decrementAmount} />
+      <button onClick={decrementAmount}>-</button>
       <input value={displayAmount.toString()} onChange={(e) => setCustomAmount(e.target.value)} pattern="\d+" />
-      <Button type="normal" text="+" onClick={incrementAmount} />
+      <button onClick={incrementAmount}>+</button>
     </div>
   );
 }
