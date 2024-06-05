@@ -14,13 +14,20 @@ export const GlobalStyle = createGlobalStyle`
     --font-size-md: clamp(1rem, 2vw + 0.5rem, 1.25rem); 
     --font-size-lg: clamp(1.25rem, 2.5vw + 0.5rem, 1.5rem); 
     --font-size-xl: clamp(1.5rem, 3vw + 0.5rem, 2rem); 
+
+  --space-xs: clamp(4px, 1vw, 8px); 
+  --space-sm: clamp(8px, 1vw, 16px); 
+  --space-md: clamp(16px, 1vw, 32px); 
+  --space-lg: clamp(24px, 1vw, 48px); 
+  --space-xl: clamp(32px, 1vw, 64px); 
+
   }
 
   * {
     font-family: "Poppins", sans-serif;
     font-style: normal;  
   }
-/* Box sizing rules */
+
 *,
 *::before,
 *::after {
@@ -47,6 +54,8 @@ ol[role='list'] {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4,
