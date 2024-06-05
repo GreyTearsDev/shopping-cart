@@ -1,6 +1,45 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import useAmountSetter from "../../hooks/useAmountSetter";
+
+// Styled components
+const Wrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+`;
+
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 100ms ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`;
+
+const Input = styled.input`
+  width: 50px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 5px;
+  font-size: 1rem;
+`;
 
 export default function AmountSetter({ amount, setAmount }) {
   const [displayAmount, setDisplayAmount] = useState(amount);
@@ -11,16 +50,20 @@ export default function AmountSetter({ amount, setAmount }) {
   }, [setAmount, displayAmount]);
 
   return (
-    <div>
+    <Wrapper>
       {error && <p>{error}</p>}
-      <button onClick={decrementAmount}>-</button>
-      <input value={displayAmount.toString()} onChange={(e) => setCustomAmount(e.target.value)} pattern="\d+" />
-      <button onClick={incrementAmount}>+</button>
-    </div>
+      <Button onClick={decrementAmount}>-</Button>
+      <Input
+        value={displayAmount.toString()}
+        onChange={(e) => setCustomAmount(e.target.value)}
+        pattern="\d+"
+      />
+      <Button onClick={incrementAmount}>+</Button>
+    </Wrapper>
   );
 }
 
 AmountSetter.propTypes = {
-  setAmount: PropTypes.func,
-  amount: PropTypes.number,
+  setAmount: PropTypes.func.isRequired,
+  amount: PropTypes.number.isRequired,
 };
