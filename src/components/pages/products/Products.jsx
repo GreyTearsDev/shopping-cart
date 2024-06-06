@@ -1,9 +1,16 @@
 import { useOutletContext } from "react-router-dom";
+import styled from "styled-components";
 import useFilteredData from "../../../hooks/useFilteredData";
 import ErrorMessage from "../../shared/ErrorMessage";
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import ProductsFilter from "./ProductsFilter";
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+`;
 
 export default function Products() {
   const [storeData, isLoading, , , error] = useOutletContext();
@@ -20,9 +27,9 @@ export default function Products() {
           <ProductsFilter filterData={filterData} keyWords={keyWords} />
           {filteredData
             && (
-              <section>
+              <Wrapper>
                 {filteredData.map(product => <ProductCard key={product.id} product={product} />)}
-              </section>
+              </Wrapper>
             )}
         </main>
       )
