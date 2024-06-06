@@ -30,7 +30,7 @@ export default function CheckedOutProductsContainer() {
           <>
             <h2>Your cart is empty!</h2>
 
-            <Button type="link" path="products" text="Shop now" />
+            <Button type="link" path="/products" text="Shop now" />
           </>
         )}
     </section>
