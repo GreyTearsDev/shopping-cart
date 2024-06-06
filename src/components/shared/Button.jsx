@@ -10,7 +10,7 @@ const buttonStyles = css`
   border-radius: 5px;
   font-size: inherit;
   display: inline-block;
-  transition: all 200ms ease;
+  transition: all 100ms ease;
 
   background-color: ${({ theme, type, active }) =>
   type === "normal" && active === "false" || active === "true"
@@ -24,15 +24,14 @@ const buttonStyles = css`
     ? theme.colors.secondary
     : theme.colors.primary};
 
-  outline: 2px solid
-    ${({ theme, type, active }) =>
-  (type === "link" || active === "false")
+  outline: 1px solid
+    ${({ theme, type }) =>
+  type === "link"
     ? theme.colors.primary
     : "transparent"};
 
   padding: ${({ type }) => type === "normal" ? "10px 20px" : "8px 18px"};
 
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &:hover {
     transform: translate(-2px, -2px);
