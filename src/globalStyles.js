@@ -57,6 +57,8 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+height: 100vh;
+background-color: hsl(0, 0%, 100%);
 }
 
 h1, h2, h3, h4,
