@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useAmountSetter from "../../hooks/useAmountSetter";
 
-// Styled components
 const Wrapper = styled.div`
+  width: 200px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   margin: 10px 0;
@@ -14,6 +15,8 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
+  width: 40px;
+  height: 40px;
   color: ${({ theme }) => theme.colors.secondary};
   border: none;
   padding: 10px;
@@ -33,6 +36,7 @@ const Button = styled.button`
 `;
 
 const Input = styled.input`
+flex: 1;
   width: 50px;
   text-align: center;
   padding: 10px;
