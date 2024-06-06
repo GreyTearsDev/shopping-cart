@@ -16,6 +16,7 @@ const Nav = styled.nav`
     margin: 0;
     padding: 0;
   }
+
 `;
 
 const NavItem = styled.li`
@@ -30,7 +31,6 @@ const NavItem = styled.li`
 const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   &:hover ${NavItem} {
-    outline: 1px solid ${({ theme }) => theme.colors.secondary};
     transform: scale(1.1);
   }
   &.active ${NavItem} {
