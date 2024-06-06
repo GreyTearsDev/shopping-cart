@@ -4,6 +4,7 @@ export const theme = {
   colors: {
     primary: "hsl(0, 0%, 15%)",
     secondary: "hsl(0, 0%, 100%)",
+    ternary: "hsl(0, 0%, 92%)",
   },
 };
 
