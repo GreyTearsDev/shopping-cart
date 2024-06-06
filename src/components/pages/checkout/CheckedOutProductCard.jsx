@@ -22,7 +22,7 @@ export default function CheckedOutProductCard({ product, onDelete, productAmount
       <h3>{product.title}</h3>
       <p>Price: ${product.price}</p>
       <AmountSetter amount={amount} setAmount={setAmount} />
-      <Button type="normal" text="Update Amount" onClick={addToCart} />
+      <Button type="normal" text="Update Bill" onClick={addToCart} />
     </article>
   );
 }
