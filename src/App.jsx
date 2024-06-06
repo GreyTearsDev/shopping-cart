@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/shared/Navbar";
+import { StyledContainer } from "./components/shared/StyledContainer.style";
 import { GlobalStyle } from "./globalStyles";
 import useFetchStoreData from "./hooks/useFetchStoreData";
 
@@ -13,9 +14,9 @@ export default function App() {
     <>
       <GlobalStyle />
       <NavBar cart={cart} />
-      <main>
+      <StyledContainer>
         <Outlet context={outletContext} />
-      </main>
+      </StyledContainer>
     </>
   );
 }
