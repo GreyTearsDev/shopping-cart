@@ -14,13 +14,13 @@ export default function AmountSetter({ amount, setAmount }) {
   return (
     <Wrapper>
       {error && <p>{error}</p>}
-      <Button onClick={decrementAmount}>-</Button>
+      <Button type="setter" onClick={decrementAmount}>-</Button>
       <Input
         value={displayAmount.toString()}
         onChange={(e) => setCustomAmount(e.target.value)}
         pattern="\d+"
       />
-      <Button onClick={incrementAmount}>+</Button>
+      <Button type="setter" onClick={incrementAmount}>+</Button>
     </Wrapper>
   );
 }
