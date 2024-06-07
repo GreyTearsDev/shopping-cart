@@ -1,8 +1,12 @@
 # Shopping Cart
 Built with React.js and Styled Components
 
-[Live Preview](https://shopping-cart-two-swart.vercel.app/)
+##[Live Preview](https://shopping-cart-two-swart.vercel.app/)
 
+This is the last project of the react course in the [The Odin Project](https://www.theodinproject.com/)'s Full-Stack JS curriculum.
+This was the first time I used Styled Components. Admitedly, they could have been implemented much better.
+
+Here are some screenshots of the project:
 
 ## Products page
 <img width="1680" alt="Captura de ecrã 2024-06-07, às 14 30 58" src="https://github.com/GreyTearsDev/shopping-cart/assets/136708640/ba3c462c-c7c7-402f-8e53-133f917b2bf3">
@@ -15,3 +19,9 @@ Built with React.js and Styled Components
 
 ## Home page
 <img width="1680" alt="Captura de ecrã 2024-06-07, às 14 31 13" src="https://github.com/GreyTearsDev/shopping-cart/assets/136708640/166d14f1-e1a2-4e5d-8ab2-a269014df528">
+
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,javascript,react,sass,vite, vitest,git,vercel" />
+  </a>
+</p>
