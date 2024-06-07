@@ -1,7 +1,8 @@
 # Shopping Cart
 Built with React.js and Styled Components
 
-[Live Preview] (https://shopping-cart-two-swart.vercel.app/)
+[Live Preview](https://shopping-cart-two-swart.vercel.app/)
+
 
 ## Products page
 <img width="1680" alt="Captura de ecrã 2024-06-07, às 14 30 58" src="https://github.com/GreyTearsDev/shopping-cart/assets/136708640/ba3c462c-c7c7-402f-8e53-133f917b2bf3">
