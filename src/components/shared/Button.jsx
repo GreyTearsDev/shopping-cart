@@ -37,10 +37,14 @@ const buttonStyles = css`
     transform: translate(-2px, -2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+&:active {
+  transform: scale(0.98);
+}
 `;
 
 const StyledButton = styled.button`
   ${buttonStyles}
+
 `;
 
 const StyledLinkButton = styled(Link)`
