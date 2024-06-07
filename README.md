@@ -1,4 +1,5 @@
 # Shopping Cart
+Built with React.js and Styled Components
 
 [Live Preview] (https://shopping-cart-two-swart.vercel.app/)
 
