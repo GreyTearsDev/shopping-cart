@@ -7,6 +7,7 @@ const Nav = styled.nav`
   padding: clamp(20px, 2vw, 40px) clamp(10px, 4vw, 40px);
   position: sticky;
   top: 0;
+  z-index: 1;
   ul {
     list-style-type: none;
     display: flex;
