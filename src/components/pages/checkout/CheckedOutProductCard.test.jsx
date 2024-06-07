@@ -48,13 +48,13 @@ describe("CheckedOutProductCard component", () => {
     expect(screen.getByText(`Price: $${product.price}`));
   });
 
-  it("clicking the 'x' button calls onDelete function", async () => {
+  it("clicking the 'Remove Item' button calls onDelete function", async () => {
     const user = userEvent.setup();
     const onDeleteMock = vi.fn();
 
     renderWithTheme(<CheckedOutProductCard product={product} onDelete={onDeleteMock} />);
 
-    const button = screen.getByRole("button", { name: /x/i });
+    const button = screen.getByRole("button", { name: /remove item/i });
     await user.click(button);
     expect(onDeleteMock).toHaveBeenCalledTimes(1);
   });
