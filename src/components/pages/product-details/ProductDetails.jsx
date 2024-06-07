@@ -48,8 +48,8 @@ const InfoWrapper = styled.section`
 
 const ButtonsWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 3vw;  
-  margin: (10px, 2vw, 30px) 0;
 `;
 
 export default function ProductDetails() {
