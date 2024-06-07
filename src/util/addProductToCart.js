@@ -1,7 +1,7 @@
 import findProduct from "./findProduct";
 export default function addProductToCart(product, amount, cart, setCart) {
   const arr = [...cart];
-  let productToAdd = findProduct(product.id, cart);
+  let productToAdd = findProduct(product.id, arr);
 
   if (productToAdd) {
     arr.forEach(prod => {
