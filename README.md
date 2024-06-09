@@ -4,7 +4,7 @@ Built with React.js and Styled Components
 ## [Live Preview](https://shopping-cart-two-swart.vercel.app/)
 
 This is the last project of the react course in the [The Odin Project](https://www.theodinproject.com/)'s Full-Stack JS curriculum.
-This was the first time I used Styled Components. Admitedly, they could have been implemented much better.
+This was the first time I used Styled Components. Admitedly, they could have been better implemented. Moreover, in the future, I will probably refactor the code to use compound components.
 
 Here are some screenshots of the project:
 
