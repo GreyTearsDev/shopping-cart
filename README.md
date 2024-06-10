@@ -27,6 +27,6 @@ Here are some screenshots of the project:
 
 <p>
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,javascript,react,sass,vite,vitest,git,vercel" />
+    <img src="https://skillicons.dev/icons?i=html,css,javascript,react,vite,vitest,git,vercel" />
   </a>
 </p>
